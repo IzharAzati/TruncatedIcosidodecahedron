@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "AC2024": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\acad.exe",
+      "commandLineArgs": "/product C3D /language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\",
+      "environmentVariables": {
+        "MYDEBUGDLL": "$(TargetPath)"
+      }
+    },
+    "AC2026": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\acad.exe",
+      "commandLineArgs": "/ld \\\"C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 2026\\\\AecBase.dbx\\\" /p Izhar /product C3D /language en-US /w Izhar /b Debug2024.scr",
+      "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\",
+      "environmentVariables": {
+        "MYDEBUGDLL": "$(TargetPath)"
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+_NETLOAD (getenv "MYDEBUGDLL")
+(if (> (strlen (getenv "MYDEBUGCMD")) 0)(command (getenv "MYDEBUGCMD")))

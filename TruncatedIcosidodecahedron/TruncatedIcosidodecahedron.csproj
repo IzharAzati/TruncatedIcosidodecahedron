@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
+		<RootNamespace>TruncatedIcosidodecahedron</RootNamespace>
+		<Deterministic>false</Deterministic>
+		<Platforms>AnyCPU;x64</Platforms>
+		<PlatformTarget>x64</PlatformTarget>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<DefineConstants>$(DefineConstants);ARX_APP</DefineConstants>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net48' ">
+    <ObjectArxPath>E:\Adesk\ObjectARX_2024\</ObjectArxPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net8.0-windows' ">
+    <ObjectArxPath>E:\Adesk\ObjectARX_2026\</ObjectArxPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblySearchPaths>$(ObjectArxPath)inc\;$(ObjectArxPath)MoreDll\;$(AssemblySearchPaths)</AssemblySearchPaths>
+  </PropertyGroup>
+
+    <ItemGroup>
+		<Reference Include="accoremgd">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(ObjectArxPath)inc\AcCoreMgd.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Acdbmgd">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(ObjectArxPath)inc\AcDbMgd.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="acmgd">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(ObjectArxPath)inc\AcMgd.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+  
+</Project>
