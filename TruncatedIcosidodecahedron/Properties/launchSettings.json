@@ -8,9 +8,8 @@
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\",
       "environmentVariables": {
         "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
-        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net48\\TruncatedIcosidodecahedron.dll"
-      },
-      "targetFramework": "net48"
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net48\\$(TargetFileName)"
+      }
     },
     "AC2026": {
       "commandName": "Executable",
@@ -20,9 +19,19 @@
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\",
       "environmentVariables": {
         "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
-        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net8.0-windows\\TruncatedIcosidodecahedron.dll"
-      },
-      "targetFramework": "net8.0-windows"
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net8.0-windows\\$(TargetFileName)"
+      }
+    },
+    "AC2027": {
+      "commandName": "Executable",
+      "framework": "net10.0-windows",
+      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2027\\acad.exe",
+      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2027\\",
+      "environmentVariables": {
+        "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net10.0-windows\\$(TargetFileName)"
+      }
     }
   }
 }
