@@ -4,18 +4,19 @@
       "commandName": "Executable",
       "framework": "net48",
       "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\acad.exe",
-      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "commandLineArgs": "/nologo /language en-US /t acadiso3D.dwt /b Debug2024.scr",
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\",
       "environmentVariables": {
         "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
-        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net48\\$(TargetFileName)"
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net48\\$(TargetFileName)",
+        "MYDEBUGCMD": "_STATUS"
       }
     },
     "AC2026": {
       "commandName": "Executable",
       "framework": "net8.0-windows",
       "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\acad.exe",
-      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "commandLineArgs": "/nologo /language en-US /t acadiso3D.dwt /b Debug2024.scr",
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\",
       "environmentVariables": {
         "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
@@ -26,7 +27,7 @@
       "commandName": "Executable",
       "framework": "net10.0-windows",
       "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2027\\acad.exe",
-      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "commandLineArgs": "/nologo /language en-US /t acadiso3D.dwt /b Debug2024.scr",
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2027\\",
       "environmentVariables": {
         "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
