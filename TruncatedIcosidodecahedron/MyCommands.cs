@@ -1,12 +1,11 @@
 ﻿// (C) Copyright 2022 by izhar@azati.co.il 
 //
 
-using System;
-using System.Collections.Generic;
 
-
+// ReSharper disable RedundantUsingDirective
 #if BRX_APP
 	// base on https://www.bricsys.com/bricscad/help/en_US/V16/DevRef/
+	// see change:	https://developer.bricsys.com/bricscad/help/en_US/V22/DevRef/
 	using _AcAp = Bricscad.ApplicationServices;
 	using _AcApCore = Bricscad.ApplicationServices;
 	using _AcBr = Teigha.BoundaryRepresentation;
@@ -54,15 +53,18 @@ using _AcPl = Autodesk.AutoCAD.PlottingServices;
 using _AcTrx = Autodesk.AutoCAD.Runtime;    //	AcRx
 using _AcWnd = Autodesk.AutoCAD.Windows;    //	AcWd
 using _AcLm = Autodesk.AutoCAD.LayerManager;
+using _AcTp = Autodesk.AutoCAD.Windows.ToolPalette;
 #endif
+// ReSharper restore RedundantUsingDirective
 
+using System.Collections.Generic;
+using TruncatedIcosidodecahedron;
 
-using Truncated_Icosidodecahedron;
 
 // This line is not mandatory, but improves loading performances
 [assembly: _AcTrx.CommandClass( typeof( MyCommands ) )]
 
-namespace Truncated_Icosidodecahedron {
+namespace TruncatedIcosidodecahedron {
 
 	// This class is instantiated by AutoCAD for each document when
 	// a command is called by the user the first time in the context
@@ -72,9 +74,9 @@ namespace Truncated_Icosidodecahedron {
 		// The CommandMethod attribute can be applied to any public  member 
 		// function of any public class.
 		// The function should take no arguments and return nothing.
-		// If the method is an intance member then the enclosing class is 
-		// intantiated for each document. If the member is a static member then
-		// the enclosing class is NOT intantiated.
+		// If the method is an instance member then the enclosing class is 
+		// instantiated for each document. If the member is a static member then
+		// the enclosing class is NOT instantiated.
 		//
 		// NOTE: CommandMethod has overloads where you can provide helpid and
 		// context menu.
@@ -90,35 +92,23 @@ namespace Truncated_Icosidodecahedron {
 			var vertices = TruncatedIcosidodecahedron.GetVertices();
 
 			using( var tr = doc.TransactionManager.StartTransaction() ) {
-				var lt = (_AcDb.LayerTable)tr.GetObject( db.LayerTableId, _AcDb.OpenMode.ForWrite );
 
-				var ltrSquare = new _AcDb.LayerTableRecord { Name = "Square", Color = _AcCm.Color.FromColorIndex( _AcCm.ColorMethod.ByAci, 4 ) };
-				var squareId = lt.Add( ltrSquare );
-				tr.AddNewlyCreatedDBObject( ltrSquare, true );
-
-				var ltrHexagon = new _AcDb.LayerTableRecord { Name = "Hexagon", Color = _AcCm.Color.FromColorIndex( _AcCm.ColorMethod.ByAci, 2 ) };
-				var hexagonId = lt.Add( ltrHexagon );
-				tr.AddNewlyCreatedDBObject( ltrHexagon, true );
-
-				var ltrDecagon = new _AcDb.LayerTableRecord { Name = "Decagon", Color = _AcCm.Color.FromColorIndex( _AcCm.ColorMethod.ByAci, 1 ) };
-				var decagonId = lt.Add( ltrDecagon );
-				tr.AddNewlyCreatedDBObject( ltrDecagon, true );
-
-				var ltrText = new _AcDb.LayerTableRecord { Name = "Text", Color = _AcCm.Color.FromColorIndex( _AcCm.ColorMethod.ByAci, 5 ) };
-				var textId = lt.Add( ltrText );
-				tr.AddNewlyCreatedDBObject( ltrText, true );
+				var squareId = GetLayerId( db, tr, "Square", 4 );
+				var hexagonId = GetLayerId( db, tr, "Hexagon", 2 );
+				var decagonId = GetLayerId( db, tr, "Decagon", 1 );
+				var textId = GetLayerId( db, tr, "Text", 5 );
 
 				var ms = (_AcDb.BlockTableRecord)tr.GetObject( _AcDb.SymbolUtilityServices.GetBlockModelSpaceId( db ), _AcDb.OpenMode.ForWrite );
-
 
 				var polyFace = new _AcDb.PolyFaceMesh();
 				polyFace.SetDatabaseDefaults();
 				ms.AppendEntity( polyFace );
 				tr.AddNewlyCreatedDBObject( polyFace, true );
 
-				var hyper = new _AcDb.HyperLink();
-				hyper.Name = @"https://en.wikipedia.org/wiki/Truncated_icosidodecahedron";
-				hyper.Description = @"Truncated Icosidodecahedron 62= 30[4] + 20[6] + 12[10]";
+				var hyper = new _AcDb.HyperLink {
+					Name = "https://en.wikipedia.org/wiki/Truncated_icosidodecahedron",
+					Description = "Truncated Icosidodecahedron 62= 30[4] + 20[6] + 12[10]"
+				};
 				polyFace.Hyperlinks.Add( hyper );
 
 				for( var i = 0; i < vertices.Count; i++ ) {
@@ -164,31 +154,45 @@ namespace Truncated_Icosidodecahedron {
 			}
 		}
 
-		private void AddMyFace( _AcDb.Transaction tr, _AcDb.ObjectId layerId, _AcDb.PolyFaceMesh polyFace, int vertex1, int vertex2, int vertex3, int vertex4 ) {
+		private static void AddMyFace( _AcDb.Transaction tr, _AcDb.ObjectId layerId, _AcDb.PolyFaceMesh polyFace, int vertex1, int vertex2, int vertex3, int vertex4 ) {
 
-			var faceRecord = new _AcDb.FaceRecord( (short)vertex1, (short)vertex2, (short)vertex3, (short)vertex4 );
-			faceRecord.LayerId = layerId;
+			var faceRecord = new _AcDb.FaceRecord( (short)vertex1, (short)vertex2, (short)vertex3, (short)vertex4 ) {
+				LayerId = layerId
+			};
 			polyFace.AppendFaceRecord( faceRecord );
 			tr.AddNewlyCreatedDBObject( faceRecord, true );
 		}
 
-		private void AddFace( _AcDb.Transaction tr, _AcDb.BlockTableRecord ms, List<_AcGe.Point3d> point3ds, _AcDb.ObjectId layerId, params byte[] pnts ) {
-			if( pnts.Length > 2 ) {
-				var poly = new _AcDb.Polyline3d();
-				poly.SetDatabaseDefaults();
-				poly.PolyType = _AcDb.Poly3dType.SimplePoly;
-				poly.LayerId = layerId;
-				ms.AppendEntity( poly );
-				tr.AddNewlyCreatedDBObject( poly, true );
-				for( var i = 0; i < pnts.Length; i++ ) {
-					var polyVert = new _AcDb.PolylineVertex3d( point3ds[pnts[i]] );
-					polyVert.LayerId = layerId;
-					poly.AppendVertex( polyVert );
-					tr.AddNewlyCreatedDBObject( polyVert, true );
-				}
-				poly.Closed = true;
+		public static _AcDb.ObjectId GetLayerId( _AcDb.Database db, _AcDb.Transaction tr, string layerName, short colorIndex ) {
+			var lt = (_AcDb.LayerTable)tr.GetObject( db.LayerTableId, _AcDb.OpenMode.ForRead );
+			if( lt.Has( layerName ) ) {
+				return lt[layerName];
 			}
+			var ltr = new _AcDb.LayerTableRecord { Name = layerName, Color = _AcCm.Color.FromColorIndex( _AcCm.ColorMethod.ByAci, colorIndex ) };
+			lt.UpgradeOpen();
+			var layerId = lt.Add( ltr );
+			tr.AddNewlyCreatedDBObject( ltr, true );
+			return layerId;
 		}
+
+		//private static void AddFace( _AcDb.Transaction tr, _AcDb.BlockTableRecord ms, List<_AcGe.Point3d> point3ds, _AcDb.ObjectId layerId, params byte[] pnts ) {
+		//	if( pnts.Length > 2 ) {
+		//		var poly = new _AcDb.Polyline3d();
+		//		poly.SetDatabaseDefaults();
+		//		poly.PolyType = _AcDb.Poly3dType.SimplePoly;
+		//		poly.LayerId = layerId;
+		//		ms.AppendEntity( poly );
+		//		tr.AddNewlyCreatedDBObject( poly, true );
+		//		for( var i = 0; i < pnts.Length; i++ ) {
+		//			var polyVert = new _AcDb.PolylineVertex3d( point3ds[pnts[i]] ) {
+		//				LayerId = layerId
+		//			};
+		//			poly.AppendVertex( polyVert );
+		//			tr.AddNewlyCreatedDBObject( polyVert, true );
+		//		}
+		//		poly.Closed = true;
+		//	}
+		//}
 
 	}
 }

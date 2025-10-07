@@ -28,6 +28,38 @@
     <AssemblySearchPaths>$(ObjectArxPath)inc\;$(ObjectArxPath)MoreDll\;$(AssemblySearchPaths)</AssemblySearchPaths>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|AnyCPU'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net48|x64'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|x64'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|AnyCPU'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows|AnyCPU'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net48|x64'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows|x64'">
+    <NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+  </PropertyGroup>
+
     <ItemGroup>
 		<Reference Include="accoremgd">
 			<SpecificVersion>False</SpecificVersion>

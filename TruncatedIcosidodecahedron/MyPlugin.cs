@@ -2,8 +2,11 @@
 //
 
 
+
+// ReSharper disable RedundantUsingDirective
 #if BRX_APP
 	// base on https://www.bricsys.com/bricscad/help/en_US/V16/DevRef/
+	// see change:	https://developer.bricsys.com/bricscad/help/en_US/V22/DevRef/
 	using _AcAp = Bricscad.ApplicationServices;
 	using _AcApCore = Bricscad.ApplicationServices;
 	using _AcBr = Teigha.BoundaryRepresentation;
@@ -33,34 +36,36 @@
 	using _AcTrx = ZwSoft.ZwCAD.Runtime;	//	AcRx
 	using _AcWnd = ZwSoft.ZwCAD.Windows;	//	AcWd
 #elif ARX_APP
-	using _AcAp = Autodesk.AutoCAD.ApplicationServices;
+using _AcAp = Autodesk.AutoCAD.ApplicationServices;
 #if UpToAC1024
 		using _AcApCore = Autodesk.AutoCAD.ApplicationServices;
 #else
-		using _AcApCore = Autodesk.AutoCAD.ApplicationServices.Core;
+using _AcApCore = Autodesk.AutoCAD.ApplicationServices.Core;
 #endif
-	//using _AcBr = Autodesk.AutoCAD.BoundaryRepresentation;
-	using _AcCm = Autodesk.AutoCAD.Colors;
-	using _AcDb = Autodesk.AutoCAD.DatabaseServices;
-	using _AcEd = Autodesk.AutoCAD.EditorInput;
-	using _AcGe = Autodesk.AutoCAD.Geometry;
-	using _AcGi = Autodesk.AutoCAD.GraphicsInterface;
-	using _AcGs = Autodesk.AutoCAD.GraphicsSystem;
-	using _AcPl = Autodesk.AutoCAD.PlottingServices;
-	//using _AcBrx = Autodesk.AutoCAD.Runtime;
-	using _AcTrx = Autodesk.AutoCAD.Runtime;    //	AcRx
-	using _AcWnd = Autodesk.AutoCAD.Windows;    //	AcWd
-	using _AcLm = Autodesk.AutoCAD.LayerManager;
+//using _AcBr = Autodesk.AutoCAD.BoundaryRepresentation;
+using _AcCm = Autodesk.AutoCAD.Colors;
+using _AcDb = Autodesk.AutoCAD.DatabaseServices;
+using _AcEd = Autodesk.AutoCAD.EditorInput;
+using _AcGe = Autodesk.AutoCAD.Geometry;
+using _AcGi = Autodesk.AutoCAD.GraphicsInterface;
+using _AcGs = Autodesk.AutoCAD.GraphicsSystem;
+using _AcPl = Autodesk.AutoCAD.PlottingServices;
+//using _AcBrx = Autodesk.AutoCAD.Runtime;
+using _AcTrx = Autodesk.AutoCAD.Runtime;    //	AcRx
+using _AcWnd = Autodesk.AutoCAD.Windows;    //	AcWd
+using _AcLm = Autodesk.AutoCAD.LayerManager;
+using _AcTp = Autodesk.AutoCAD.Windows.ToolPalette;
 #endif
+// ReSharper restore RedundantUsingDirective
 
-	using System;
-	using System.Reflection;
-	using Truncated_Icosidodecahedron;
+using System;
+using System.Reflection;
+using TruncatedIcosidodecahedron;
 
 // This line is not mandatory, but improves loading performances
 [assembly: _AcTrx.ExtensionApplication( typeof( MyPlugin ) )]
 
-namespace Truncated_Icosidodecahedron {
+namespace TruncatedIcosidodecahedron {
 
 	public class MyPlugin :_AcTrx.IExtensionApplication {
 
@@ -77,5 +82,4 @@ namespace Truncated_Icosidodecahedron {
 		}
 
 	}
-
 }

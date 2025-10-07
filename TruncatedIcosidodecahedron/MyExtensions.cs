@@ -1,7 +1,4 @@
-﻿using System;
-
-
-#if BRX_APP
+﻿#if BRX_APP
 	// base on https://www.bricsys.com/bricscad/help/en_US/V16/DevRef/
 	using _AcAp = Bricscad.ApplicationServices;
 	using _AcApCore = Bricscad.ApplicationServices;
@@ -39,21 +36,17 @@ using _AcAp = Autodesk.AutoCAD.ApplicationServices;
 using _AcApCore = Autodesk.AutoCAD.ApplicationServices.Core;
 #endif
 //using _AcBr = Autodesk.AutoCAD.BoundaryRepresentation;
-using _AcCm = Autodesk.AutoCAD.Colors;
 using _AcDb = Autodesk.AutoCAD.DatabaseServices;
 using _AcEd = Autodesk.AutoCAD.EditorInput;
 using _AcGe = Autodesk.AutoCAD.Geometry;
-using _AcGi = Autodesk.AutoCAD.GraphicsInterface;
-using _AcGs = Autodesk.AutoCAD.GraphicsSystem;
-using _AcPl = Autodesk.AutoCAD.PlottingServices;
 //using _AcBrx = Autodesk.AutoCAD.Runtime;
-using _AcTrx = Autodesk.AutoCAD.Runtime;    //	AcRx
-using _AcWnd = Autodesk.AutoCAD.Windows;    //	AcWd
-using _AcLm = Autodesk.AutoCAD.LayerManager;
+//	AcRx
+//	AcWd
 #endif
+using System;
 
 
-namespace Truncated_Icosidodecahedron {
+namespace TruncatedIcosidodecahedron {
 
 	// from: http://through-the-interface.typepad.com/through_the_interface/2015/09/intersecting-autocad-curves-with-a-plane-using-net.html
 

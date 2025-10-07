@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Autodesk.AutoCAD.Geometry;
 
-namespace Truncated_Icosidodecahedron {
+namespace TruncatedIcosidodecahedron {
 	public class TruncatedIcosidodecahedron {
 
 		/*
@@ -219,8 +219,11 @@ namespace Truncated_Icosidodecahedron {
 			return lst;
 		}
 
+#if NET5_0_OR_GREATER
+#pragma warning disable IDE0230
+#endif
 		public static byte[][] GetFaceSquare() {
-			byte[][] squares = {
+		byte[][] squares = {
 				new byte[] {  0,  1, 4, 2 },
 				new byte[] {  3,  7, 5, 6 },
 				new byte[] {  8, 24, 32, 16 },
@@ -297,7 +300,15 @@ namespace Truncated_Icosidodecahedron {
 			};
 			return decagon;
 		}
+#if NET5_0_OR_GREATER
+#pragma warning restore IDE0230
+#endif
 
+		/// <summary>
+		/// PolyFaceMesh vertex numbering is based on base 1
+		/// A better way would be to add a dummy vertex at the beginning, so that the vertex definition of the faces starts at 1
+		/// </summary>
+		/// <param name="tints"></param>
 		public static void StepForPface( ref byte[][] tints ) {
 			for( int i = 0; i < tints.Length; i++ ) {
 				for( int j = 0; j < tints[i].Length; j++ ) {

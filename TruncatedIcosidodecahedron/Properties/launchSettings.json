@@ -2,21 +2,27 @@
   "profiles": {
     "AC2024": {
       "commandName": "Executable",
+      "framework": "net48",
       "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\acad.exe",
-      "commandLineArgs": "/product C3D /language en-US /t acadiso3D.dwt /b Debug2024.scr",
+      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2024\\",
       "environmentVariables": {
-        "MYDEBUGDLL": "$(TargetPath)"
-      }
+        "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net48\\TruncatedIcosidodecahedron.dll"
+      },
+      "targetFramework": "net48"
     },
     "AC2026": {
       "commandName": "Executable",
+      "framework": "net8.0-windows",
       "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\acad.exe",
-      "commandLineArgs": "/ld \\\"C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 2026\\\\AecBase.dbx\\\" /p Izhar /product C3D /language en-US /w Izhar /b Debug2024.scr",
+      "commandLineArgs": "/language en-US /t acadiso3D.dwt /b Debug2024.scr",
       "workingDirectory": "C:\\Program Files\\Autodesk\\AutoCAD 2026\\",
       "environmentVariables": {
-        "MYDEBUGDLL": "$(TargetPath)"
-      }
+        "MYDEBUGDLL_NOT_WORK": "$(TargetPath)",
+        "MYDEBUGDLL": "$(ProjectDir)bin\\x64\\$(Configuration)\\net8.0-windows\\TruncatedIcosidodecahedron.dll"
+      },
+      "targetFramework": "net8.0-windows"
     }
   }
 }
