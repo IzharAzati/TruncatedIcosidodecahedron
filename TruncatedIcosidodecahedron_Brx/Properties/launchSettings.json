@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Brx_26": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Bricsys\\BricsCAD V26 en_US\\bricscad.exe",
+      "commandLineArgs": "/L /LD $(TargetPath) /T Default-m",
+      "framework": "net8.0-windows"
+    }
+  }
+}

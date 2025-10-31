@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<RootNamespace>TruncatedIcosidodecahedron</RootNamespace>
+		<Deterministic>false</Deterministic>
+		<Platforms>AnyCPU;x64</Platforms>
+		<PlatformTarget>x64</PlatformTarget>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<ProgramFilesBinPath>$(ProgramW6432)\Bricsys\BricsCAD V26 en_US</ProgramFilesBinPath>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<!--<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>-->
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<NoWarn>1701;1702;IDE0063;IDE0300</NoWarn>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net48' ">
+		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
+		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
+	</ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>$(DefineConstants);BRX_APP;BRX_APP_V24_OR_GREATER;DEBUG;CREATE_CMD</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DefineConstants>$(DefineConstants);BRX_APP;BRX_APP_V24_OR_GREATER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineConstants>$(DefineConstants);BRX_APP;BRX_APP_V24_OR_GREATER</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\TruncatedIcosidodecahedron\MyCommands.cs" Link="MyCommands.cs" />
+    <Compile Include="..\TruncatedIcosidodecahedron\MyExtensions.cs" Link="MyExtensions.cs" />
+    <Compile Include="..\TruncatedIcosidodecahedron\MyPlugin.cs" Link="MyPlugin.cs" />
+    <Compile Include="..\TruncatedIcosidodecahedron\Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\TruncatedIcosidodecahedron\TruncatedIcosidodecahedron.cs" Link="TruncatedIcosidodecahedron.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BrxMgd">
+      <HintPath>$(ProgramFilesBinPath)\BrxMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TD_Mgd">
+      <HintPath>$(ProgramFilesBinPath)\TD_Mgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+	  <Reference Include="TD_MgdBrep">
+		  <HintPath>$(ProgramFilesBinPath)\TD_MgdBrep.dll</HintPath>
+		  <Private>False</Private>
+	  </Reference>
+	  
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+  
+</Project>

@@ -11,7 +11,7 @@
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<DefineConstants>$(DefineConstants);ARX_APP</DefineConstants>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-		<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+		<!--<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>-->
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 	</PropertyGroup>
